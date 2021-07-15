@@ -1,4 +1,4 @@
-// Pour 
+// Peut-être pas nécessaires
 // #ifdef _WIN32
 // #include <Windows.h>
 // #else
@@ -20,6 +20,8 @@ char key;
 int taille_potager = 10;
 int curseur_x = 0, curseur_y = 0;
 
+int score = 0;
+
 
 void reverse_colors_in_potager_at(potager ppotager, int x, int y)
 {
@@ -40,14 +42,21 @@ int main()
     p = init_potager(taille_potager);
 
     move_cursor_to(0, 0);
-    printf("Début du jeu\nTouches :");
+    printf("####################################\n");
+    printf("### Ramassage de chou (très fun) ###\n");
+    printf("####################################\n");
+    printf("But : Ramasser le plus de chous en 100 mouvements.\n");
+    printf("      Les chous mûrs rapportent plus de points !\n");
+    printf("Touches :");
     printf("\tZQSD :\tdéplacer curseur\n\t");
+    printf("\tEspace :\tcueillir plante\n\t");
     printf("\tÉchap/flèches :\tquitter\n");
 
 
     // Boucle de jeu
     print_potager(p);
-    while (1)
+    int i;
+    for (i = 0; i < 100; i++)
     {
         // printf("Appuyer sur une touche : ");
         key = mygetch();
@@ -75,23 +84,21 @@ int main()
                         curseur_y++;
                     break;
                 case ' ':
-                    // vieillir(get_plante(p, curseur_x, curseur_y));
-                    // printf("nouvel âge : %d", vieillir(get_plante(p, 2, 2)));
+                    score += cueillir(p, curseur_x, curseur_y); // la valeur de retour est l'âge
                     break;
                 default:
                     break;
             }
-            faire_pousser_potager();
+            faire_pousser_potager(p); // fait pousser à chaque appui de touche
 
             reprint_potager(p);
             reverse_colors_in_potager_at(p, curseur_x, curseur_y);
+            printf("Score : %d", score);
         }
         else
-        {
-            reset_colors();
-            printf("fin\n");
             break;
-        }
     }
+    reset_colors();
+    printf("\n");
     free_potager(&p);
 }

@@ -47,10 +47,15 @@ void move_cursor_in_potager_to(potager ppotager, int x, int y)
     }
 }
 
+// Gère la couleur aussi
 void print_plante_at(potager ppotager, int x, int y)
 {
     if (in_potager(ppotager, x, y))
+    {
+        // change_fg_color_to(COULEURS_PLANTES[ppotager.pot[y][x].age]);
         printf("%c", ppotager.pot[y][x].car);
+        reset_colors();
+    }
 }
 
 void print_potager(potager ppotager)
@@ -74,20 +79,31 @@ void reprint_potager(potager ppotager)
     print_potager(ppotager);
 }
 
-void faire_pousser_potager(void)
+void faire_pousser_potager(potager ppotager)
 {
-    
+    int proba = 1; // en %
+    int i, j;
+    for (i = 0; i < ppotager.taille; i++)
+        for (j = 0; j < ppotager.taille; j++)
+            if (random() % 100 < proba)
+            {
+                plante* p;
+                p = get_plante(ppotager, i, j);
+                if (0 == vieillir(p))
+                    deraciner(p);
+            }
+}
+
+int cueillir(potager ppotager, int x, int y)
+{
+    // système de score ? (pour l'instant : l'âge)
+    return deraciner(get_plante(ppotager, x, y));
 }
 
 /*
-void cueillir(plante* pplante)
+void detruire_plante(potager ppotager, int x, int y)
 {
-    // système de score ?
-}
 
-void detruire_plante(plante* pplante)
-{
-    // ou alors x, y en paramètre
 }
 */
 

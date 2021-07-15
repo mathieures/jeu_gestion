@@ -22,6 +22,16 @@ void restore_cursor_position(void)
     printf("\033[u");
 }
 
+void change_fg_color_to(int c)
+{
+    printf("\033[38;5;%dm", c);
+}
+
+void change_bg_color_to(int c)
+{
+    printf("\033[48;5;%dm", c);
+}
+
 void reset_colors(void)
 {
     printf("\033[0m");
@@ -33,8 +43,11 @@ void reverse_colors(void)
     if (reversed_colors)
         reset_colors();
     else
-        printf("\033[38;2;0;0;0m\033[48;5;255;255;255m");
-    // printf("\033[38:5:9m\033[48:5:211m");
+    {
+        change_fg_color_to(BLACK);
+        change_bg_color_to(WHITE);
+        // printf("\033[38;5;0m\033[48;5;255m");
+    }
     reversed_colors = !reversed_colors;
 }
 
@@ -49,11 +62,3 @@ void move_to_column(int c)
 {
     printf("\033[%dG", c + 1); // + 1 car ça commence à 1, pas à 0
 }
-
-/*
-void move_to_line(int l)
-{
-    printf("\033[;H"); // Bouge le curseur en haut à gauche
-    printf("\033")
-}
-*/

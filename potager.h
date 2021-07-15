@@ -12,6 +12,8 @@ typedef struct {
     int taille;
 } potager;
 
+// static const int COULEURS_PLANTES[] = {255, 23, 32, 10}; // couleurs des plantes en fonction de l'âge
+
 potager init_potager(int ptaille);
 void init_emplacement(potager ppotager, int x, int y);
 
@@ -23,7 +25,8 @@ void print_plante_at(potager ppotager, int x, int y);
 void print_potager(potager ppotager);
 void reprint_potager(potager ppotager);
 
-void faire_pousser_potager(void);
+void faire_pousser_potager(potager ppotager);
+int cueillir(potager ppotager, int x, int y); // retourne le score (l'âge)
 
 void free_potager(potager* ppotager);
 
