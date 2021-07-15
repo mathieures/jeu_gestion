@@ -22,6 +22,7 @@ void restore_cursor_position(void)
     printf("\033[u");
 }
 
+// 38: fg, 48 : bg
 void change_fg_color_to(int c)
 {
     printf("\033[38;5;%dm", c);
@@ -39,7 +40,6 @@ void reset_colors(void)
 
 void reverse_colors(void)
 {
-    // 38: fg, 48 : bg
     if (reversed_colors)
         reset_colors();
     else
