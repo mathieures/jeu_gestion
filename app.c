@@ -46,10 +46,11 @@ int main()
     printf("### Ramassage de chou (très fun) ###\n");
     printf("####################################\n");
     printf("But : Ramasser le plus de chous en 100 mouvements.\n");
-    printf("      Les chous mûrs rapportent plus de points !\n");
+    printf("      Les chous mûrs rapportent plus de points…\n");
+    printf("      Plus un chou est gros, meilleur il est !\n");
     printf("Touches :");
     printf("\tZQSD :\tdéplacer curseur\n\t");
-    printf("\tEspace :\tcueillir plante\n\t");
+    printf("\tEspace :\tcueillir chou\n\t");
     printf("\tÉchap/flèches :\tquitter\n");
 
 

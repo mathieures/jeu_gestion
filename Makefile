@@ -19,4 +19,4 @@ plante.o: plante.c plante.h
 	$(CC) $< $(CFLAGS) -c
 
 clean:
-	rm -rf *.o
+	rm -rf *.o app
