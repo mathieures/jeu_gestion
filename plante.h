@@ -25,7 +25,7 @@ typedef struct {
     char car;
 } plante;
 
-plante init_plante(void);
+plante create_plante(void);
 void update_plante_car(plante* pplante);
 int vieillir(plante* pplante);
 int deraciner(plante* pplante);

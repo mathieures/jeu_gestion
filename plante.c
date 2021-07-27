@@ -1,6 +1,6 @@
 #include "plante.h"
 
-plante init_plante(void)
+plante create_plante(void)
 {
     plante p;
     p.age = 0;

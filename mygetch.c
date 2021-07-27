@@ -1,6 +1,7 @@
 #include "mygetch.h"
+#ifndef _WIN32
 
-int mygetch(void)
+int unix_getch(void)
 {
    struct termios oldt, newt;
    int ch;
@@ -15,3 +16,5 @@ int mygetch(void)
 
    return ch;
 }
+
+#endif

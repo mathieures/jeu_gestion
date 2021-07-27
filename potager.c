@@ -1,6 +1,6 @@
 #include "potager.h"
 
-potager init_potager(int ptaille)
+potager create_potager(int ptaille)
 {
     potager result;
     result.taille = ptaille;
@@ -11,20 +11,22 @@ potager init_potager(int ptaille)
     {
         result.pot[i] = (plante*)calloc(ptaille, sizeof(plante));
         for (j = 0; j < ptaille; j++)
-            init_emplacement(result, i, j);
+            result.pot[i][j] = create_plante();
     }
     return result;
 }
 
+/*
 void init_emplacement(potager ppotager, int x, int y)
 {
     if (in_potager(ppotager, x, y))
     {   
         plante p;
-        p = init_plante();
+        p = create_plante();
         ppotager.pot[x][y] = p;
     }
 }
+*/
 
 int in_potager(potager ppotager, int x, int y)
 {
@@ -40,22 +42,13 @@ plante* get_plante(potager ppotager, int x, int y)
 
 void move_cursor_in_potager_to(potager ppotager, int x, int y)
 {
-    if (in_potager(ppotager, x, y))
-    {
-        move_lines_up(ppotager.taille - y);
-        move_to_column(x*2); // Bouge le curseur à la colonne x (*2 pour les espaces)
-    }
+    move_lines_up(ppotager.taille - y);
+    move_to_column(x*2); // Bouge le curseur à la colonne x (*2 pour les espaces)
 }
 
-// Gère la couleur aussi
 void print_plante_at(potager ppotager, int x, int y)
 {
-    if (in_potager(ppotager, x, y))
-    {
-        // change_fg_color_to(COULEURS_PLANTES[ppotager.pot[y][x].age]);
-        printf("%c", ppotager.pot[y][x].car);
-        reset_colors();
-    }
+    printf("%c", ppotager.pot[y][x].car);
 }
 
 void print_potager(potager ppotager)
@@ -72,12 +65,14 @@ void print_potager(potager ppotager)
     }
 }
 
+/*
 // Affiche le potager à la place du précédent
 void reprint_potager(potager ppotager)
 {
     move_cursor_in_potager_to(ppotager, 0, 0);
     print_potager(ppotager);
 }
+*/
 
 void faire_pousser_potager(potager ppotager)
 {
@@ -85,7 +80,7 @@ void faire_pousser_potager(potager ppotager)
     int i, j;
     for (i = 0; i < ppotager.taille; i++)
         for (j = 0; j < ppotager.taille; j++)
-            if (random() % 100 < proba)
+            if (rand() % 100 < proba)
             {
                 plante* p;
                 p = get_plante(ppotager, i, j);
