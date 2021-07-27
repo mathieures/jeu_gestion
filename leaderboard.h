@@ -23,7 +23,7 @@ void write_leaderboard(leaderboard lb, char filename[]);
 void print_leaderboard(leaderboard lb);
 
 void add_player_to_leaderboard(leaderboard* lb, char name[20], int score); // INSÉRER en triant du plus grand au plus petit score
-int remove_player_from_leaderboard(leaderboard lb, player* pplayer); // retourne 0 si pas trouvé
+void remove_player_from_leaderboard(leaderboard lb, player* pplayer); // retourne 0 si pas trouvé
 
 void free_leaderboard(leaderboard lb);
 

@@ -121,7 +121,7 @@ void add_player_to_leaderboard(leaderboard* lb, char name[21], int score)
     }
 }
 
-int remove_player_from_leaderboard(leaderboard lb, player* pplayer)
+void remove_player_from_leaderboard(leaderboard lb, player* pplayer)
 {
     player* tmp;
     tmp = lb;
@@ -132,12 +132,11 @@ int remove_player_from_leaderboard(leaderboard lb, player* pplayer)
         {
             tmp->svt = pplayer->svt;
             free(pplayer);
-            return 1;
+            break;
         }
         tmp = tmp->svt;
     }
-    return 0;
-} // retourne 0 si pas trouvé
+}
 
 
 void free_leaderboard(leaderboard lb)

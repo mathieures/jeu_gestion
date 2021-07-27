@@ -7,7 +7,7 @@ void print_rules(int max_turns)
     printf("##################################################################\n");
     
     printf("Objectif :");
-    printf("\tRamasser le plus de chous en exactement %d mouvements.\n", max_turns);
+    printf("\tRamasser le plus de choux en exactement %d mouvements.\n", max_turns);
     printf("\t\tPlus un chou est gros, plus il rapporte de points !\n");
     
     printf("Touches :");

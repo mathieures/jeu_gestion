@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 #include "screen.h"
 #include "rules.h"
@@ -141,16 +142,29 @@ int main()
     printf("\n");
 
     // Sauvegarder le leaderboard dans le fichier
-    char name[21];
-    int len;
-    printf("Nom du joueur a enregistrer (laisser vide pour quitter) : ");
-    len = scanf("%s", name);
-    if (1 < len && len < 21)
+    printf("Enregistrer score ? [O/N] : ");
+    char answer[21];
+    scanf("%s", answer);
+    // Si la reponse est differente de NON
+    if (strcmp(answer, "n"))
     {
-        player* already_here = get_player_by_name(lb, name)
-        if (already_here->score < score)
-            remove_player_from_leaderboard(lb, already_here);
-        add_player_to_leaderboard(&lb, name, score);
+        printf("Nom du joueur a enregistrer : ");
+        char name[21];
+        int len;
+        scanf("%s", name);
+        len = strlen(name);
+        if (2 <= len && len < 21)
+        {
+            player* already_here = get_player_by_name(lb, name);
+
+            if (already_here->score < score)
+            {
+                remove_player_from_leaderboard(lb, already_here);
+                add_player_to_leaderboard(&lb, name, score);
+            }
+        }
+        else
+            printf("Nom invalide : entrer un nom entre 2 et 20 caracteres\n");
     }
 
     print_leaderboard(lb);
