@@ -1,28 +1,30 @@
 CC=cl.exe
-CFLAGS=/Wall /O2
+CFLAGS=/Wall /O2 /nologo
 
 all: app.exe
 
-app.exe: app.c screen.o rules.o mygetch.o potager.o plante.o leaderboard.o
-    $(CC) $** $(CFLAGS) /fe:$@
+app.exe: app.c screen.obj rules.obj mygetch.obj potager.obj plante.obj leaderboard.obj
+    $(CC) $** $(CFLAGS) /Fe:$@
+#     $** est l'equivalent de $^ (toutes les dependances)
 
-screen.o: screen.c screen.h
-    $(CC) $< $(CFLAGS) -c
+screen.obj: screen.c screen.h
+    $(CC) $*.c $(CFLAGS) /c
+#     $* est l'equivalent de $@ mais sans l'extension
 
-rules.o: rules.c rules.h
-    $(CC) $< $(CFLAGS) -c
+rules.obj: rules.c rules.h
+    $(CC) $*.c $(CFLAGS) /c
 
-mygetch.o: mygetch.c mygetch.h
-    $(CC) $< $(CFLAGS) -c
+mygetch.obj: mygetch.c mygetch.h
+    $(CC) $*.c $(CFLAGS) /c
 
-potager.o: potager.c potager.h screen.h
-    $(CC) $< $(CFLAGS) -c
+potager.obj: potager.c potager.h screen.h
+    $(CC) $*.c $(CFLAGS) /c
 
-plante.o: plante.c plante.h
-    $(CC) $< $(CFLAGS) -c
+plante.obj: plante.c plante.h
+    $(CC) $*.c $(CFLAGS) /c
 
-leaderboard.o: leaderboard.c leaderboard.h
-    $(CC) $< $(CFLAGS) -c
+leaderboard.obj: leaderboard.c leaderboard.h
+    $(CC) $*.c $(CFLAGS) /c
 
 clean:
-    rm -rf *.o
+    rm -rf *.obj

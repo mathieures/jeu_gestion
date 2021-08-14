@@ -25,4 +25,4 @@ leaderboard.o: leaderboard.c leaderboard.h
 	$(CC) $< $(CFLAGS) -c
 
 clean:
-	rm -rf *.o
+	rm -rf *.o *.obj

@@ -23,12 +23,13 @@ void print_player(player* pplayer)
 leaderboard get_player_by_name(leaderboard lb, char name[21])
 {
     leaderboard tmp;
-    tmp = lb;
-    while (tmp)
+    // tmp = lb;
+    for (tmp = lb; tmp; tmp = tmp->svt)
+    // while (tmp)
     {
         if (0 == strcmp(tmp->name, name))
             break;
-        tmp = tmp->svt;
+        // tmp = tmp->svt;
     }
     return tmp;
 }
@@ -59,12 +60,13 @@ void write_leaderboard(leaderboard lb, char filename[])
 
     // lignes de la forme : 20 caractères, une espace, et un nombre
     leaderboard tmp;
-    tmp = lb;
-    while (tmp)
-    {
+    // tmp = lb;
+    for (tmp = lb; tmp; tmp = tmp->svt)
+    // while (tmp)
+    // {
         fprintf(lb_file, "%s %d\n", tmp->name, tmp->score);
-        tmp = tmp->svt;
-    }
+        // tmp = tmp->svt;
+    // }
     fclose(lb_file);
 }
 
@@ -73,13 +75,14 @@ void print_leaderboard(leaderboard lb)
 {
     int i = 1;
     leaderboard tmp;
-    tmp = lb;
+    // tmp = lb;
     printf("LEADERBOARD :\n");
-    while (tmp)
-    {
+    for (tmp = lb; tmp; tmp = tmp->svt)
+    // while (tmp)
+    // {
         printf("%i - %s : %d pt(s)\n", i++, tmp->name, tmp->score);
-        tmp = tmp->svt;
-    }
+        // tmp = tmp->svt;
+    // }
     printf("------------\n");
 }
 
@@ -110,11 +113,12 @@ void add_player_to_leaderboard(leaderboard* lb, char name[21], int score)
     {
         prec = NULL;
         // Tant qu'il y a qqch après et que le score du suivant est supérieur, on continue
-        while (tmp && tmp->score >= score)
-        {
+        for (tmp = (*lb); tmp && tmp->score >= score; tmp = tmp->svt)
+        // while (tmp && tmp->score >= score)
+        // {
             prec = tmp;
-            tmp = tmp->svt;
-        }
+            // tmp = tmp->svt;
+        // }
         // On a donc la bonne position
         new_player->svt = tmp;
         prec->svt = new_player;
@@ -124,8 +128,9 @@ void add_player_to_leaderboard(leaderboard* lb, char name[21], int score)
 void remove_player_from_leaderboard(leaderboard lb, player* pplayer)
 {
     player* tmp;
-    tmp = lb;
-    while (tmp)
+    // tmp = lb;
+    for (tmp = lb; tmp; tmp = tmp->svt)
+    // while (tmp)
     {
         // Si le prochain a le meme nom
         if (0 == strcmp(tmp->svt->name, pplayer->name))
@@ -134,7 +139,7 @@ void remove_player_from_leaderboard(leaderboard lb, player* pplayer)
             free(pplayer);
             break;
         }
-        tmp = tmp->svt;
+        // tmp = tmp->svt;
     }
 }
 

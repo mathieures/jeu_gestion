@@ -18,7 +18,7 @@ Exemple d'étapes d'une plante :
 #include <string.h>
 
 static const char AGES[] = ".oO0"; // statique car voulu seulement dans plante.c
-static const int AGE_MAX = strlen(AGES) - 1; // indice maximum de la chaîne AGES
+static const int AGE_MAX = 3; // indice maximum de la chaîne AGES
 
 typedef struct {
     int age;

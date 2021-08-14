@@ -44,9 +44,9 @@ void reverse_colors_in_potager_at(potager ppotager, int x, int y)
     }
 }
 
-int main()
+int main(void)
 {
-    srand(time(NULL));
+    (void)srand(time(NULL));
     max_turns = taille_potager * 10;
 
     potager p;
@@ -145,7 +145,7 @@ int main()
     printf("Enregistrer score ? [O/N] : ");
     char answer[21];
     scanf("%s", answer);
-    // Si la reponse est differente de NON
+    // Si la reponse est differente de 'n' (non)
     if (strcmp(answer, "n"))
     {
         printf("Nom du joueur a enregistrer : ");
@@ -157,7 +157,7 @@ int main()
         {
             player* already_here = get_player_by_name(lb, name);
 
-            if (already_here->score < score)
+            if (already_here && already_here->score < score)
             {
                 remove_player_from_leaderboard(lb, already_here);
                 add_player_to_leaderboard(&lb, name, score);

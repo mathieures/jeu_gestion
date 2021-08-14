@@ -13,7 +13,7 @@ void update_plante_car(plante* pplante)
     pplante->car = AGES[pplante->age];
 }
 
-// Renvoie l'âge pour savoir si on la déracine (0 : âge max, donc couic)
+// Renvoie l'âge pour savoir si on la déracine (renvoie 0 si âge max)
 int vieillir(plante* pplante)
 {
     if (pplante->age != AGE_MAX)
